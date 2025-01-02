@@ -1,0 +1,162 @@
+.content {
+    width: 75%;
+}
+
+.content--header {
+    display: flex;
+    align-items: centre;
+    justify-content:space-between;
+}
+
+.header--title{
+    color: #526d82;
+}
+
+.header--activity {
+     display: flex;
+     align-items: center;
+     gap:20px;
+}
+.search-box{
+    background: #dde6ed;
+    padding: 4px 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+.search-box input{
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 4px;
+    outline: none;
+}
+
+.search-box .icon{
+     color: #969393;
+     font-size: 22px;
+     cursor: pointer;
+     transition: 0.5 ease-in-out;
+    
+}
+.card--container {
+    display: flex;
+    gap: 20px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  
+  .card {
+    flex:  1 ; 
+    background: #dde6ed;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.04);
+    cursor: pointer;
+  }
+  
+  .card--row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .card--value {
+    font-size: 2rem; 
+    font-weight: bold;
+    
+  }
+  
+  .card--icon {
+    font-size: 2rem; 
+    
+  }
+  
+  .card--title {
+    font-size: 1rem;
+    color: #526d82;
+    text-align: left;
+  }
+
+  .profile-icon {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    right: 20px;
+    cursor: pointer;
+    color: #526d82;
+  }
+  
+  @media (max-width: 768px) {
+
+    .content {
+      width: 100%;
+  }
+
+
+  .content--header {
+    display: flex;
+    align-items: center; /* Center items vertically */
+    position: relative; /* Needed for absolute positioning */
+    width: 100%; /* Make the header span full width */
+    padding: 10px 0; /* Optional spacing */
+}
+
+.header--title {
+    flex-shrink: 0; /* Prevent shrinking */
+    margin-right: auto; /* Push it to the start */
+ 
+}
+
+.header--activity {
+    position: absolute; /* Independent positioning */
+    left: 50%; /* Move it to the center of the parent */
+    transform: translateX(-50%); /* Perfectly center horizontally */
+    display: flex;
+    align-items: center;
+}
+
+.search-box {
+    background: #dde6ed;
+    padding: 4px 8px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 4px;
+    flex-grow: 1; 
+    font-size: 0.9rem;
+}
+
+.search-box .icon {
+    color: #969393;
+    font-size: 22px;
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+}
+
+.profile-icon {
+  
+  display: block; 
+}
+
+  }
+  

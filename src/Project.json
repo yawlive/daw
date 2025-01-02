@@ -1,0 +1,32 @@
+{
+    "projects": [
+        {
+            "project_id": "1",
+            "title": "P1",
+            "teacher_id": "t1",
+            "description": "meow meow meow",
+            "keywords": "key,key,key",
+            "status": "meow",
+            "created_at":"12-12-12",
+            "updated_at":"12-12-12"
+            
+          },
+          {
+            "project_id": "2",
+            "title": "P2",
+            "teacher_id": "t2",
+            "description": "meow meow meow",
+            "keywords": "key,key,key",
+            "status": "meow",
+            "created_at":"12-12-12",
+            "updated_at":"12-12-12"
+            
+          }
+
+     
+     
+      
+      
+    
+    ]
+  }
