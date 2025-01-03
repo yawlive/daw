@@ -1,10 +1,67 @@
 import React, { useState } from 'react';
 import { Mail, Send, Search } from 'lucide-react';
-import { studentsData } from '../../data.js';
+
 import StudentsProfileS from './StudentsProfileS';
 
 const StudentListS = () => {
   const [selectedStudent, setSelectedStudent] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
+  const studentsData = [
+    {
+      photo: "#",
+      name: "Ahmed Bensaid",
+      studentId: "S10001",
+      level: "gl",
+      grade: "L3",
+      email: "ahmed.bensaid@example.com",
+      status: "Supervised",
+    },
+    {
+      photo: "#",
+      name: "Fatima Chikhi",
+      studentId: "S10002",
+      level: "ti",
+      grade: "L3",
+      email: "fatima.chikhi@example.com",
+      status: "Pending",
+    },
+    {
+      photo: "#",
+      name: "Mourad Belkacem",
+      studentId: "S10003",
+      level: "sci si",
+      grade: "L3",
+      email: "mourad.belkacem@example.com",
+      status: "Supervised",
+    },
+    {
+      photo: "#",
+      name: "Amina Gharbi",
+      studentId: "S10004",
+      level: "gl",
+      grade: "L3",
+      email: "amina.gharbi@example.com",
+      status: "Pending",
+    },
+    {
+      photo: "#",
+      name: "Nassim Khellaf",
+      studentId: "S10005",
+      level: "ti",
+      grade: "L3",
+      email: "nassim.khellaf@example.com",
+      status: "Supervised",
+    },
+    {
+      photo: "#",
+      name: "Souad Mokrani",
+      studentId: "S10006",
+      level: "sci si",
+      grade: "L3",
+      email: "souad.mokrani@example.com",
+      status: "Pending",
+    },
+  ];
 
   const handleViewProfile = (student) => {
     setSelectedStudent(student);
@@ -13,6 +70,12 @@ const StudentListS = () => {
   const handleSendRequest = (studentId) => {
     console.log('Sending request for student:', studentId);
   };
+
+
+  const filteredStudents = studentsData.filter((student) =>
+    student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    student.studentId.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   if (selectedStudent) {
     return (
@@ -30,6 +93,8 @@ const StudentListS = () => {
         <div className="relative">
           <input
             type="text"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search students..."
             className="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
           />
@@ -53,7 +118,7 @@ const StudentListS = () => {
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">
-              {studentsData.map((student, index) => (
+              {filteredStudents.map((student, index) => (
                 <tr key={index} className="hover:bg-gray-50">
                   <td className="p-4">
                     <img
@@ -95,6 +160,13 @@ const StudentListS = () => {
                   </td>
                 </tr>
               ))}
+              {filteredStudents.length === 0 && (
+                <tr>
+                  <td colSpan="8" className="p-4 text-center text-gray-500">
+                    No students found.
+                  </td>
+                </tr>
+              )}
             </tbody>
           </table>
         </div>

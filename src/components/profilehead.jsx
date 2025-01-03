@@ -1,10 +1,24 @@
 import React from 'react';
 import { MdOutlineCancel } from 'react-icons/md';
-import { user, userstudent } from '../data.js';
+// import { user, userstudent } from '../data.js';
 import {useState } from 'react';
 import { Link , useLocation } from 'react-router-dom';
 
 const ProfileHead = () => {
+
+   //  data
+   const userstudent = {
+    student_id: "78456468762",
+    profile_picture: "/rahma.jpg",
+    full_name: "Rahma Zendaoui",
+    phone: "07749387454",
+    grade: "L3 TI",
+    email: "rahma@gmail.com",
+    skills: ["css", "js", "flutter"],
+    created_at: "12/2/2024",
+    isActive: true,
+  };
+
   
          const [isClicked, setIsClicked] = useState(true);
          const location = useLocation();

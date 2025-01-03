@@ -19,10 +19,7 @@ export const studentSidebarConfig = {
     { title: "Requests", icon: <BiUserPlus />, link: "/student/requests" },
     { title: "themes", icon: <FaRegLightbulb /> , link:"/student/themes" },
     { title: "students list", icon: <BiUserPin /> , link:"/student/studentlists"},
-    // { title: "themes", icon: <BiUser /> , gap:true },
-    // { title: "my applications", icon: <BiCalendar />  },
-    // { title: "my team", icon: <BiCalendar /> ,gap:true },
-    // { title: "professors", icon: <BiUser /> , link:"/teacher/Teacherlist" },
+  
     
    
   ],
