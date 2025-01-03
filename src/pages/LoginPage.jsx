@@ -1,23 +1,47 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import img from '../assets/images/loginimg.png';
+import axios from 'axios';
 
 const LoginPage = () => {
- const navigate = useNavigate();
+  const navigate = useNavigate();
 
- const handleSubmit = (e) => {
-   e.preventDefault();
-   
-   const username = e.target.username.value;
-   const password = e.target.password.value;
-
-   if (username === 'rahma' && password === 'rahma') {
-     navigate('/student');
-   }
-   if (username === 'mayar' && password === 'mayar') {
-    navigate('/teacher');
-  }
- };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+  
+    try {
+      // API Call
+      const response = await axios.post('http://127.0.0.1:8000/api/user/login', {
+        email,
+        password,
+      });
+  
+      if (response.data.success) {
+        // Navigate to the student page on success
+        navigate('/student');
+      } else {
+        alert(response.data.message || 'Invalid credentials');
+      }
+    } catch (error) {
+      console.error('Login failed:', error);
+  
+      if (error.response && error.response.status === 422) {
+        // Handle validation errors
+        const errors = error.response.data.errors;
+        console.log('Validation Errors:', errors);
+        alert('Validation errors occurred. Please check your input.');
+      } else if (error.response && error.response.status === 401) {
+        // Handle 401 errors (Invalid credentials)
+        alert(error.response.data.message || 'Invalid credentials');
+      } else {
+        alert('An error occurred during login. Please try again.');
+      }
+    }
+  };
+  
 
  return (
    <div className="bg-gray-100 flex justify-center items-center h-screen">
@@ -34,13 +58,13 @@ const LoginPage = () => {
      <div className="lg:p-36 md:p-52 sm:20 p-8 w-full lg:w-1/2 mt-5">
        <h1 className="text-2xl font-semibold mb-4">Login</h1>
        <form onSubmit={handleSubmit}>
-         {/* Username Input */}
+         {/* Email Input */}
          <div className="mb-4">
-           <label htmlFor="username" className="block text-gray-600">Username</label>
+           <label htmlFor="email" className="block text-gray-600">Email</label>
            <input
-             type="text"
-             id="username"
-             name="username"
+             type="email"
+             id="email"
+             name="email"
              className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
              autoComplete="off"
            />

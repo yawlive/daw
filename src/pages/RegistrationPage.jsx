@@ -1,13 +1,17 @@
 import React, { useState } from 'react'
 import img from '../assets/images/register.png'; 
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 const RegistrationPage = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
-    username: '',
+    role: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    phone_number: ''
   });
   const [passwordError, setPasswordError] = useState('');
 
@@ -30,14 +34,38 @@ const RegistrationPage = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
     if (formData.password !== formData.confirmPassword) {
       setPasswordError('Passwords do not match');
       return;
     }
-    
-    console.log('Form submitted', formData);
+    try {
+      // Send a POST request to the API endpoint
+      const response = await axios.post('http://localhost:8000/api/user/register', {
+        name: formData.fullName, 
+        email: formData.email,
+        password: formData.password,
+        password_confirmation: formData.confirmPassword,
+        role: 'student', 
+        phone_number: '1234567890',
+      });
+  
+      // Handle success
+      console.log('Registration successful', response.data);
+      alert('Registration successful!');
+      navigate('/login');
+    } catch (error) {
+      // Handle errors
+      if (error.response) {
+        console.error('Error response:', error.response.data);
+        alert(`Error: ${error.response.data.message}`);
+      } else {
+        console.error('Error:', error);
+        alert('An error occurred during registration.');
+      }
+    }
   };
 
   return (
@@ -68,12 +96,12 @@ const RegistrationPage = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="username" className="block text-gray-600">Username</label>
+          <label htmlFor="Phonenumber" className="block text-gray-600">Phone Number</label>
           <input
             type="text"
-            id="username"
-            name="username"
-            value={formData.username}
+            id="Phonenumber"
+            name="Phonenumber"
+            value={formData.Phonenumber}
             onChange={handleChange}
             className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
             autoComplete="off"
