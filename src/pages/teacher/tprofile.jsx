@@ -70,7 +70,6 @@ const handleDeleteCard = (index) => {
   };
 
 
-/////////default values then you can edit the card using edit button haha work smart not hard /////////
   const addcard = () => {
     const newCard = {
       title: "New Theme",
@@ -86,6 +85,39 @@ const handleDeleteCard = (index) => {
     setUpdatedThemes((prev) => [...prev, newCard]);
     setEditingCardIndex(updatedThemes.length); 
   };
+
+
+
+  const createProject = async (projectData) => {
+    try {
+      const response = await api.post('/user/teacher/project', projectData);
+      console.log('Project Created:', response.data);
+    } catch (error) {
+      console.error('Error Creating Project:', error.response?.data || error.message);
+    }
+  };
+
+
+
+  const updateProject = async (projectId, updatedData) => {
+    try {
+      const response = await api.put('/user/teacher/project', {
+        id: projectId,
+        ...updatedData,
+      });
+      console.log('Project Updated:', response.data);
+    } catch (error) {
+      console.error('Error Updating Project:', error.response?.data || error.message);
+    }
+  };
+
+
+  const updatedData = {
+    title: 'Advanced AI in Education',
+    description: 'Updated description for AI-driven tools',
+    status: 'closed', 
+  };
+  updateProject(1, updatedData);
   
 
   return (

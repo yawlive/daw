@@ -66,6 +66,40 @@ export default function StudentThemes() {
     }
   ];
 
+
+
+
+  const fetchProjects = async () => {
+    try {
+      const response = await api.get('/student/projects');
+      themes=response.data;
+    } catch (error) {
+      console.error('Error Fetching Projects:', error.response?.data || error.message);
+    }
+  };
+
+
+  const applyForProject = async (applicationData) => {
+    try {
+      const response = await api.post('/student/applications', applicationData);
+      console.log('Application Submitted:', response.data);
+    } catch (error) {
+      console.error('Error Submitting Application:', error.response?.data || error.message);
+    }
+  };
+
+
+  const createGroup = async (groupData) => {
+    try {
+      const response = await api.post('/student/groups', groupData);
+      console.log('Group Created:', response.data);
+    } catch (error) {
+      console.error('Error Creating Group:', error.response?.data || error.message);
+    }
+  };
+
+  
+
   const handleApply = (theme) => {
     setCurrentTheme(theme);
     setIsApplicationOpen(true);

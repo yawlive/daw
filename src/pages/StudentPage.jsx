@@ -6,6 +6,19 @@ import studentimg from '../assets/images/rahma.jpg';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const StudentPage = () => {
+
+
+  const fetchDashboardStats = async () => {
+    try {
+      const response = await api.get('/student/dashboard');
+      console.log('Dashboard Stats:', response.data);
+    } catch (error) {
+      console.error('Error Fetching Dashboard Stats:', error.response?.data || error.message);
+    }
+  };
+
+
+
   const name = 'Rahma';
   const grade = 'L3 TI';
   const skills = ['JavaScript', 'React', 'CSS'];

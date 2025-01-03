@@ -13,6 +13,20 @@ export default function StudentProfile() {
     { id: 4, name: 'Malik Mahmoud', grade: 'L3 TI', imageUrl: yujin },
 
   ];
+
+
+
+  const updateProfile = async (profileData) => {
+    try {
+      const response = await api.put('/student/profile', profileData);
+      console.log('Profile Updated:', response.data);
+    } catch (error) {
+      console.error('Error Updating Profile:', error.response?.data || error.message);
+    }
+  };
+
+
+  
   
   const [profile, setProfile] = useState({
     name: 'Rahma Zendaoui',
